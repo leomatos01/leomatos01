@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Slides da Apresentação</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <style>
+    :root {
+      --roxo: #6c5ce7;
+      --roxo-escuro: #5a4bd1;
+      --lilas: #a29bfe;
+      --verde: #00b894;
+      --vermelho: #e17055;
+      --texto: #2d3436;
+      --texto-suave: #636e72;
+      --borda: #e6e9f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: #1e1e2e; color: var(--texto); overflow: hidden;
+    }
+
+    .slide {
+      position: absolute; inset: 0; display: none;
+      flex-direction: column; justify-content: center;
+      padding: 6vh 8vw; background: #fff;
+      animation: entrar 0.35s ease;
+    }
+    .slide.ativo { display: flex; }
+    @keyframes entrar { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+
+    .slide h1 { font-size: clamp(2rem, 5.5vw, 4rem); line-height: 1.15; }
+    .slide h2 {
+      font-size: clamp(1.5rem, 3.4vw, 2.4rem); margin-bottom: 3vh; color: var(--roxo-escuro);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .slide p, .slide li { font-size: clamp(1rem, 1.9vw, 1.35rem); line-height: 1.55; }
+    .slide ul, .slide ol { margin-left: 1.4em; }
+    .slide li { margin-bottom: 1.2vh; }
+    .suave { color: var(--texto-suave); }
+    strong { color: var(--roxo-escuro); }
+
+    .capa { background: linear-gradient(135deg, var(--roxo) 0%, var(--lilas) 100%); color: #fff; text-align: center; align-items: center; }
+    .capa .emoji { font-size: clamp(3.5rem, 9vw, 6rem); margin-bottom: 1vh; }
+    .capa h1 span { color: #ffeaa7; }
+    .capa .sub { font-size: clamp(1.1rem, 2.4vw, 1.6rem); max-width: 26em; margin: 2vh auto 4vh; opacity: 0.95; }
+    .capa .autor { font-size: clamp(1rem, 1.8vw, 1.25rem); opacity: 0.9; }
+    .capa strong { color: #fff; }
+
+    .colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 3vw; align-items: start; }
+    .cartao {
+      background: #f5f6fa; border: 1px solid var(--borda);
+      border-radius: 16px; padding: 2.4vh 1.6vw; margin-bottom: 1.6vh;
+    }
+    .cartao h3 { font-size: clamp(1.05rem, 2vw, 1.4rem); margin-bottom: 0.6vh; }
+    .cartao p, .cartao li { font-size: clamp(0.9rem, 1.6vw, 1.15rem); }
+    .destaque { border-left: 6px solid var(--roxo); background: #f0eeff; }
+    .ok { border-left: 6px solid var(--verde); }
+    .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 2em; height: 2em; border-radius: 50%; background: var(--roxo);
+      color: #fff; font-weight: 800; margin-right: 0.5em; font-size: 0.9em;
+    }
+    .grande-numero { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; color: var(--roxo); line-height: 1; }
+    .rodape-slide { position: absolute; bottom: 3vh; left: 8vw; color: var(--texto-suave); font-size: 0.85rem; }
+
+    .controles {
+      position: fixed; bottom: 18px; right: 18px; z-index: 20;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(30, 30, 46, 0.85); color: #fff;
+      border-radius: 999px; padding: 8px 14px; backdrop-filter: blur(4px);
+    }
+    .controles button {
+      background: var(--roxo); color: #fff; border: none; border-radius: 50%;
+      width: 38px; height: 38px; font-size: 1.1rem; cursor: pointer;
+    }
+    .controles button:hover { background: var(--roxo-escuro); }
+    #contador { font-weight: 700; min-width: 52px; text-align: center; }
+    .barra-progresso { position: fixed; top: 0; left: 0; height: 5px; background: var(--roxo); z-index: 20; transition: width 0.3s; }
+    .dica-teclado { position: fixed; bottom: 24px; left: 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem; z-index: 20; }
+
+    @media (max-width: 700px) { .colunas { grid-template-columns: 1fr; } .dica-teclado { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="barra-progresso" id="progresso"></div>
+
+  <!-- 1. Capa -->
+  <section class="slide capa ativo">
+    <div class="emoji">🧠</div>
+    <h1>Logica<span>Mente</span></h1>
+    <p class="sub">Plataforma web gamificada para o ensino de lógica de programação e pensamento computacional</p>
+    <p class="autor"><strong>Leonardo Presotto de Matos</strong><br>Centro Universitário Filadélfia — UniFil<br>2026</p>
+  </section>
+
+  <!-- 2. O problema -->
+  <section class="slide">
+    <h2>🚨 O problema</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao"><h3>Reprovação e desistência</h3><p>Disciplinas introdutórias de programação registram taxas de reprovação que frequentemente ultrapassam <strong>30–50%</strong>.</p></div>
+        <div class="cartao"><h3>Falta de base lógica</h3><p>O aluno enfrenta <strong>sintaxe + lógica + resolução de problemas</strong> ao mesmo tempo, sem preparo prévio.</p></div>
+      </div>
+      <div>
+        <div class="cartao"><h3>Feedback tardio</h3><p>No modelo tradicional, o erro só é descoberto <strong>dias depois</strong>, na correção da prova.</p></div>
+        <div class="cartao"><h3>Ritmos diferentes</h3><p>Turmas heterogêneas deixam alunos com dificuldade <strong>para trás</strong>, sem acompanhamento individual.</p></div>
+      </div>
+    </div>
+    <p class="suave" style="margin-top:2vh">Contexto: o pensamento computacional é habilidade prevista na <strong>BNCC</strong> — o problema começa antes da faculdade.</p>
+  </section>
+
+  <!-- 3. A solução -->
+  <section class="slide">
+    <h2>💡 A solução: LogicaMente</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao destaque"><h3>🗺️ Trilha progressiva</h3><p>4 módulos: Pensamento Computacional → Algoritmos e Variáveis → Condicionais → Laços de Repetição.</p></div>
+        <div class="cartao destaque"><h3>✏️ Prática com correção automática</h3><p>16 exercícios em 3 formatos: múltipla escolha, V/F e ordenação de blocos de código (Parsons problems).</p></div>
+        <div class="cartao destaque"><h3>💬 Feedback imediato</h3><p>Dica ao errar, explicação ao acertar — o erro vira aprendizado na hora.</p></div>
+      </div>
+      <div>
+        <div class="cartao destaque"><h3>🏅 Gamificação</h3><p>XP, 5 medalhas, sequência de dias de estudo e ranking da turma.</p></div>
+        <div class="cartao destaque"><h3>📊 Painel do professor</h3><p>Relatórios de progresso e identificação de alunos que precisam de reforço.</p></div>
+        <div class="cartao destaque"><h3>🌐 100% web e gratuita</h3><p>Roda em qualquer navegador, sem instalação — inclusive em laboratórios de escolas públicas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Requisitos -->
+  <section class="slide">
+    <h2>📋 Requisitos que guiaram o desenvolvimento</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao"><h3>Funcionais (principais)</h3>
+          <ul>
+            <li>Trilha com desbloqueio progressivo (RF03)</li>
+            <li>Exercícios interativos + correção automática (RF05/RF06)</li>
+            <li>Feedback com dicas graduais (RF07)</li>
+            <li>XP, medalhas e ranking (RF08/RF09)</li>
+            <li>Relatórios para o professor (RF11)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="cartao"><h3>Não funcionais</h3>
+          <ul>
+            <li>Web e responsivo (RNF01)</li>
+            <li>Interface para iniciantes (RNF02)</li>
+            <li>Disponível 24/7, custo zero (RNF05)</li>
+          </ul>
+        </div>
+        <div class="cartao destaque"><h3>Regras de negócio</h3>
+          <ul>
+            <li><strong>RN01:</strong> nota ≥ 70% desbloqueia o próximo módulo</li>
+            <li><strong>RN02:</strong> pontuação máxima só na 1ª tentativa</li>
+            <li><strong>RN03:</strong> ranking restrito à turma</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Processo -->
+  <section class="slide">
+    <h2>⚙️ Processo de desenvolvimento</h2>
+    <ol>
+      <li><span class="num">1</span><strong>Análise:</strong> definição do problema, justificativa (BNCC, evasão) e levantamento de requisitos;</li>
+      <li><span class="num">2</span><strong>Projeto:</strong> desenho da trilha pedagógica, das regras de negócio e da arquitetura;</li>
+      <li><span class="num">3</span><strong>Implementação:</strong> desenvolvimento iterativo — conteúdo pedagógico primeiro, depois a lógica, depois o visual;</li>
+      <li><span class="num">4</span><strong>Testes:</strong> validação automatizada do conteúdo e testes funcionais de cada requisito;</li>
+      <li><span class="num">5</span><strong>Publicação:</strong> versionamento no GitHub e deploy no GitHub Pages.</li>
+    </ol>
+    <p class="suave" style="margin-top:2.5vh">A cada nova ideia, a pergunta-filtro: <em>"isso atende a qual requisito?"</em></p>
+  </section>
+
+  <!-- 6. Arquitetura -->
+  <section class="slide">
+    <h2>🏗️ Arquitetura e diferenciais técnicos</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao"><h3>Stack</h3>
+          <ul>
+            <li><strong>HTML5 + CSS3 + JavaScript puro</strong> — sem frameworks, sem build, carregamento instantâneo;</li>
+            <li><strong>localStorage</strong> — progresso persistido no navegador;</li>
+            <li><strong>GitHub Pages</strong> — hospedagem gratuita e disponível 24/7.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="cartao destaque"><h3>Decisão-chave</h3>
+          <p>Aplicação <strong>100% estática</strong>: toda a lógica (correção, XP, desbloqueio) roda no cliente. Sem servidor e sem banco de dados = <strong>custo zero</strong> e nenhum ponto de falha.</p>
+        </div>
+        <div class="cartao"><h3>Separação clara</h3>
+          <p><code>data.js</code> (conteúdo pedagógico) separado de <code>app.js</code> (lógica) — adicionar um módulo novo não exige mexer na lógica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Demonstração -->
+  <section class="slide capa">
+    <div class="emoji">🖥️</div>
+    <h1>Demonstração ao vivo</h1>
+    <p class="sub">Trilha → lição → exercício (erro, dica e acerto) → XP e medalha → ranking → painel do professor → módulo bloqueado</p>
+    <p class="autor">leomatos01.github.io/leomatos01/app/</p>
+  </section>
+
+  <!-- 8. Testes -->
+  <section class="slide">
+    <h2>🧪 Resultados de testes</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao ok"><p>✅ Correção automática dos 3 tipos de exercício com feedback imediato</p></div>
+        <div class="cartao ok"><p>✅ Desbloqueio de módulos conforme a nota mínima de 70% (RN01)</p></div>
+        <div class="cartao ok"><p>✅ XP máximo apenas na 1ª tentativa (RN02) + medalhas e ranking</p></div>
+      </div>
+      <div>
+        <div class="cartao ok"><p>✅ Teste automatizado dos 16 exercícios (respostas válidas, sem duplicados) e da fórmula de nota</p></div>
+        <div class="cartao ok"><p>✅ Persistência do progresso entre sessões (localStorage)</p></div>
+        <div class="cartao ok"><p>✅ Responsividade (desktop/celular) e compatibilidade Chrome, Firefox e Edge</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Métricas -->
+  <section class="slide">
+    <h2>📈 Métricas de sucesso</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao"><h3><span class="num">1</span>Usuários ativos/mês</h3><p>Meta: 100 no 1º semestre · Google Analytics</p></div>
+        <div class="cartao"><h3><span class="num">2</span>Conclusão de módulos</h3><p>Meta: ≥ 60% no módulo 1; ≥ 30% no curso completo</p></div>
+        <div class="cartao"><h3><span class="num">3</span>Acerto na 1ª tentativa</h3><p>Meta: entre 60% e 80% (eficácia pedagógica)</p></div>
+      </div>
+      <div>
+        <div class="cartao"><h3><span class="num">4</span>Retenção em 7 dias</h3><p>Meta: ≥ 40% retornam na semana seguinte</p></div>
+        <div class="cartao"><h3><span class="num">5</span>Satisfação (NPS)</h3><p>Meta: NPS ≥ 50 · formulário ao concluir módulo</p></div>
+        <div class="cartao destaque"><p>Juntas cobrem o ciclo completo: <strong>chegar → usar → aprender → voltar → recomendar</strong>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Lições e próximos passos -->
+  <section class="slide">
+    <h2>🎓 Lições aprendidas e próximos passos</h2>
+    <div class="colunas">
+      <div>
+        <div class="cartao destaque"><h3>Lições</h3>
+          <ul>
+            <li>Requisitos definidos <strong>antes do código</strong> mantêm o projeto no rumo;</li>
+            <li>Restrições técnicas <strong>moldam a arquitetura</strong> — e podem virar diferencial;</li>
+            <li>Em software educacional, a forma de <strong>comunicar o erro</strong> importa tanto quanto o conteúdo.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="cartao"><h3>Próximos passos</h3>
+          <ul>
+            <li>Backend real com turmas online e contas persistentes;</li>
+            <li>Editor de conteúdo para o professor (RF12 completo);</li>
+            <li>Novos módulos: vetores, funções e matrizes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Encerramento -->
+  <section class="slide capa">
+    <div class="emoji">🙌</div>
+    <h1>Obrigado!</h1>
+    <p class="sub">LogicaMente — aprender lógica de programação pode ser divertido.</p>
+    <p class="autor"><strong>Leonardo Presotto de Matos</strong> · UniFil<br>
+      Site: leomatos01.github.io/leomatos01 · Código: github.com/leomatos01/leomatos01</p>
+  </section>
+
+  <div class="dica-teclado">Use ← → ou espaço para navegar</div>
+  <div class="controles">
+    <button id="btn-ant" title="Anterior">←</button>
+    <span id="contador">1 / 11</span>
+    <button id="btn-prox" title="Próximo">→</button>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    let atual = 0;
+
+    function ir(n) {
+      atual = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, i) => s.classList.toggle("ativo", i === atual));
+      document.getElementById("contador").textContent = `${atual + 1} / ${slides.length}`;
+      document.getElementById("progresso").style.width = `${((atual + 1) / slides.length) * 100}%`;
+      location.hash = atual + 1;
+    }
+
+    document.getElementById("btn-prox").onclick = () => ir(atual + 1);
+    document.getElementById("btn-ant").onclick = () => ir(atual - 1);
+    document.addEventListener("keydown", e => {
+      if (["ArrowRight", " ", "PageDown"].includes(e.key)) { e.preventDefault(); ir(atual + 1); }
+      if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); ir(atual - 1); }
+      if (e.key === "Home") ir(0);
+      if (e.key === "End") ir(slides.length - 1);
+    });
+
+    const hash = parseInt(location.hash.slice(1), 10);
+    ir(isNaN(hash) ? 0 : hash - 1);
+  </script>
+</body>
+</html>

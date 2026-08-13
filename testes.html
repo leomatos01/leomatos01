@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Testes Automatizados</title>
+  <meta name="description" content="Suíte de testes automatizados do conteúdo pedagógico e das regras de negócio do LogicaMente, executada no navegador.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="assets/site.css?v=2">
+  <style>
+    .resultado { font-family: Consolas, "Courier New", monospace; font-size: 0.9rem; }
+    .linha-teste { padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; }
+    .linha-teste.ok { background: #e8fbf3; color: #00734d; }
+    .linha-teste.falha { background: #fdecea; color: #c0392b; font-weight: 700; }
+    #resumo { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="emoji">🧪</div>
+    <h1>Testes Automatizados</h1>
+    <p>Validação do conteúdo pedagógico e das regras de negócio, executada 100% no navegador — sem dependências externas.</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">Informações</a>
+    <a href="documentacao.html">Documentação</a>
+    <a href="prototipos.html">Protótipos</a>
+    <a href="testes.html" class="ativo">Testes</a>
+    <a href="metricas.html">Métricas e Avaliação</a>
+    <a href="apresentacao.html">Apresentação Final</a>
+    <a href="app/index.html">Aplicação</a>
+  </nav>
+
+  <main>
+    <div class="cartao">
+      <div id="resumo">Executando testes...</div>
+      <div id="resultados" class="resultado"></div>
+    </div>
+  </main>
+
+  <footer>
+    LogicaMente · Projeto acadêmico de Pensamento Computacional · 2026
+  </footer>
+
+  <script src="app/data.js"></script>
+  <script>
+    // Suíte de testes independente do DOM da aplicação: valida data.js (conteúdo pedagógico)
+    // e reimplementa as regras de negócio RN01/RN02 sobre um estado simulado, espelhando
+    // a lógica de app/app.js (notaModulo, moduloDesbloqueado) para testá-la isoladamente.
+
+    const NOTA_MINIMA = 70;
+    const resultados = [];
+
+    function afirmar(descricao, condicao) {
+      resultados.push({ descricao, ok: !!condicao });
+    }
+
+    // ---- Testes de integridade do conteúdo pedagógico (data.js) ----
+
+    afirmar("MODULOS deve conter 4 módulos", Array.isArray(MODULOS) && MODULOS.length === 4);
+
+    let totalExercicios = 0;
+    const enunciadosVistos = new Set();
+    let enunciadosDuplicados = false;
+
+    MODULOS.forEach((mod, mi) => {
+      afirmar(`Módulo ${mi + 1} (${mod.id}) tem id, título e lição`, !!(mod.id && mod.titulo && mod.licao));
+      afirmar(`Módulo ${mi + 1} tem ao menos 1 exercício`, Array.isArray(mod.exercicios) && mod.exercicios.length > 0);
+
+      mod.exercicios.forEach((ex, ei) => {
+        totalExercicios++;
+        const label = `Módulo ${mi + 1}, exercício ${ei + 1}`;
+
+        if (enunciadosVistos.has(ex.enunciado)) enunciadosDuplicados = true;
+        enunciadosVistos.add(ex.enunciado);
+
+        if (ex.tipo === "quiz") {
+          afirmar(`${label} (quiz): tem ≥ 2 opções`, Array.isArray(ex.opcoes) && ex.opcoes.length >= 2);
+          afirmar(`${label} (quiz): resposta é índice válido`, Number.isInteger(ex.resposta) && ex.resposta >= 0 && ex.resposta < ex.opcoes.length);
+          const opcoesUnicas = new Set(ex.opcoes);
+          afirmar(`${label} (quiz): opções sem duplicatas`, opcoesUnicas.size === ex.opcoes.length);
+        } else if (ex.tipo === "vf") {
+          afirmar(`${label} (vf): resposta é booleana`, typeof ex.resposta === "boolean");
+        } else if (ex.tipo === "ordem") {
+          afirmar(`${label} (ordem): tem ≥ 2 itens`, Array.isArray(ex.itens) && ex.itens.length >= 2);
+          const itensUnicos = new Set(ex.itens);
+          afirmar(`${label} (ordem): itens sem duplicatas`, itensUnicos.size === ex.itens.length);
+        } else {
+          afirmar(`${label}: tipo de exercício reconhecido (quiz/vf/ordem)`, false);
+        }
+
+        afirmar(`${label}: possui dica e explicação`, !!(ex.dica && ex.explicacao));
+      });
+    });
+
+    afirmar("Total de exercícios no curso é 16", totalExercicios === 16);
+    afirmar("Nenhum enunciado de exercício duplicado", !enunciadosDuplicados);
+
+    const idsMedalhas = new Set(MEDALHAS.map(m => m.id));
+    afirmar("MEDALHAS tem 5 medalhas com ids únicos", MEDALHAS.length === 5 && idsMedalhas.size === MEDALHAS.length);
+
+    // ---- Testes das regras de negócio (RN01/RN02), com estado simulado ----
+    // Espelha a lógica de notaModulo()/moduloDesbloqueado() em app/app.js.
+
+    function notaModuloSimulada(progressoModulo) {
+      let pontos = 0;
+      progressoModulo.forEach(e => { if (e.resolvido) pontos += e.primeira ? 1 : 0.5; });
+      return Math.round((pontos / progressoModulo.length) * 100);
+    }
+
+    function moduloConcluidoSimulado(progressoModulo) {
+      return progressoModulo.every(e => e.resolvido);
+    }
+
+    function moduloDesbloqueadoSimulado(indice, progresso) {
+      if (indice === 0) return true;
+      const anterior = progresso[indice - 1];
+      return moduloConcluidoSimulado(anterior) && notaModuloSimulada(anterior) >= NOTA_MINIMA;
+    }
+
+    // RN02: acerto na 1ª tentativa vale nota cheia; todos os 4 exercícios na 1ª tentativa => 100%
+    const modTodosPrimeira = [1, 2, 3, 4].map(() => ({ resolvido: true, primeira: true }));
+    afirmar("RN02: 4/4 acertos na 1ª tentativa geram nota 100%", notaModuloSimulada(modTodosPrimeira) === 100);
+
+    // RN02: acerto todo via retentativa vale metade (50%)
+    const modTodosRetentativa = [1, 2, 3, 4].map(() => ({ resolvido: true, primeira: false }));
+    afirmar("RN02: 4/4 acertos via retentativa geram nota 50%", notaModuloSimulada(modTodosRetentativa) === 50);
+
+    // RN01: módulo 1 (índice 0) sempre desbloqueado
+    afirmar("RN01: módulo 1 está sempre desbloqueado", moduloDesbloqueadoSimulado(0, [modTodosPrimeira]) === true);
+
+    // RN01: módulo 2 desbloqueado somente se módulo 1 tiver nota >= 70%
+    const progressoComNotaBaixa = [modTodosRetentativa, []];
+    afirmar("RN01: módulo 2 bloqueado se módulo 1 tem nota 50%", moduloDesbloqueadoSimulado(1, progressoComNotaBaixa) === false);
+
+    const progressoComNotaAlta = [modTodosPrimeira, []];
+    afirmar("RN01: módulo 2 desbloqueado se módulo 1 tem nota 100%", moduloDesbloqueadoSimulado(1, progressoComNotaAlta) === true);
+
+    // RN01: módulo incompleto nunca desbloqueia o próximo, mesmo com boas notas parciais
+    const progressoIncompleto = [[{ resolvido: true, primeira: true }, { resolvido: false, primeira: false }], []];
+    afirmar("RN01: módulo incompleto não desbloqueia o próximo", moduloDesbloqueadoSimulado(1, progressoIncompleto) === false);
+
+    // ---- Renderização dos resultados ----
+    const container = document.getElementById("resultados");
+    const falhas = resultados.filter(r => !r.ok);
+
+    resultados.forEach(r => {
+      const div = document.createElement("div");
+      div.className = "linha-teste " + (r.ok ? "ok" : "falha");
+      div.textContent = (r.ok ? "✅ " : "❌ ") + r.descricao;
+      container.appendChild(div);
+    });
+
+    document.getElementById("resumo").textContent =
+      `${resultados.length - falhas.length} / ${resultados.length} testes passaram` +
+      (falhas.length ? ` — ${falhas.length} falha(s)` : " — tudo certo! 🎉");
+    document.getElementById("resumo").style.color = falhas.length ? "#c0392b" : "#00734d";
+  </script>
+</body>
+</html>

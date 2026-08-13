@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Protótipos de Telas</title>
+  <meta name="description" content="Protótipos de baixa fidelidade das telas do LogicaMente.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="assets/site.css?v=2">
+  <style>
+    .wire { background:#fff; border:2px solid #2d3436; border-radius:8px; padding:14px; max-width:360px; margin:0 auto; font-size:0.82rem; }
+    .wire-titulo { text-align:center; font-weight:700; border-bottom:2px solid #2d3436; padding-bottom:8px; margin-bottom:10px; }
+    .wire-caixa { border:1.5px dashed #636e72; border-radius:6px; padding:8px; margin-bottom:8px; color:#636e72; }
+    .wire-botao { border:2px solid #2d3436; border-radius:20px; text-align:center; padding:8px; margin-bottom:8px; font-weight:700; }
+    .wire-linha { display:flex; gap:8px; }
+    .wire-linha .wire-caixa, .wire-linha .wire-botao { flex:1; margin-bottom:0; }
+    .wire-barra { height:10px; border:1px solid #636e72; border-radius:6px; overflow:hidden; margin:4px 0 8px; }
+    .wire-barra > div { height:100%; background:#c8c2ff; }
+    .grade-proto { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; }
+    .proto-legenda { text-align:center; margin-top:10px; font-size:0.85rem; color:var(--texto-suave); }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="emoji">🖼️</div>
+    <h1>Protótipos de Telas</h1>
+    <p>Wireframes de baixa fidelidade usados como base para a interface implementada.</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">Informações</a>
+    <a href="documentacao.html">Documentação</a>
+    <a href="prototipos.html" class="ativo">Protótipos</a>
+    <a href="testes.html">Testes</a>
+    <a href="metricas.html">Métricas e Avaliação</a>
+    <a href="apresentacao.html">Apresentação Final</a>
+    <a href="app/index.html">Aplicação</a>
+  </nav>
+
+  <main>
+    <div class="destaque">
+      Estes wireframes representam a estrutura e a interação de cada tela antes da implementação visual
+      final (ver a aplicação real em <a href="app/index.html">app/index.html</a>). Foram a base para o
+      layout definido em <code>app/style.css</code>.
+    </div>
+
+    <div class="grade-proto">
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">🧠 Login</div>
+          <div class="wire-caixa">Campo: "Seu nome"</div>
+          <div class="wire-linha">
+            <div class="wire-caixa">◉ Sou Aluno</div>
+            <div class="wire-caixa">○ Sou Professor</div>
+          </div>
+          <div class="wire-botao">Começar a aprender 🚀</div>
+        </div>
+        <p class="proto-legenda">1. Tela de Login / Identificação</p>
+      </div>
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">🗺️ Trilha</div>
+          <div class="wire-caixa">
+            🧠 Módulo 1: Pensamento Computacional
+            <div class="wire-barra"><div style="width:100%"></div></div>
+            [ Revisar ]
+          </div>
+          <div class="wire-caixa">
+            📦 Módulo 2: Algoritmos e Variáveis
+            <div class="wire-barra"><div style="width:50%"></div></div>
+            [ Continuar ]
+          </div>
+          <div class="wire-caixa" style="opacity:.6">
+            🔒 Módulo 3: Condicionais<br>Conclua o módulo anterior
+          </div>
+        </div>
+        <p class="proto-legenda">2. Tela de Trilha de Módulos</p>
+      </div>
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">📖 Lição</div>
+          <div class="wire-caixa">Título do conceito + texto explicativo + exemplo prático (caixa de destaque)</div>
+          <div class="wire-botao">Praticar agora ✏️</div>
+        </div>
+        <p class="proto-legenda">3. Tela de Lição Teórica</p>
+      </div>
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">✏️ Exercício</div>
+          <div class="wire-caixa">Módulo 1 · Exercício 2 de 4</div>
+          <div class="wire-caixa">Enunciado do exercício...</div>
+          <div class="wire-caixa">○ Opção A &nbsp; ○ Opção B &nbsp; ○ Opção C</div>
+          <div class="wire-caixa" style="border-color:#e17055;color:#e17055">Feedback: dica / explicação</div>
+          <div class="wire-linha">
+            <div class="wire-botao">← Trilha</div>
+            <div class="wire-botao">Verificar</div>
+          </div>
+        </div>
+        <p class="proto-legenda">4. Tela de Exercício</p>
+      </div>
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">🏅 Ranking</div>
+          <div class="wire-caixa">🥇 Ana Souza — 310 XP</div>
+          <div class="wire-caixa">🥈 Bruno Lima — 260 XP</div>
+          <div class="wire-caixa" style="border-color:#6c5ce7;color:#6c5ce7">🥉 Você — 205 XP</div>
+        </div>
+        <p class="proto-legenda">5. Tela de Ranking da Turma</p>
+      </div>
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">👤 Perfil</div>
+          <div class="wire-linha">
+            <div class="wire-caixa">⭐ XP total</div>
+            <div class="wire-caixa">🔥 Streak</div>
+            <div class="wire-caixa">✅ Exercícios</div>
+          </div>
+          <div class="wire-caixa">🎖️ Medalhas: 👣 ✅ 💯 🔒 🔒</div>
+        </div>
+        <p class="proto-legenda">6. Tela de Perfil</p>
+      </div>
+
+      <div>
+        <div class="wire">
+          <div class="wire-titulo">📊 Painel do Professor</div>
+          <div class="wire-caixa">Turma A — código LOGICA-2026A</div>
+          <div class="wire-caixa">Tabela: Aluno | Progresso | Acerto 1ª tentativa ⚠️</div>
+          <div class="wire-caixa">Gráfico de barras: módulos com mais erro</div>
+        </div>
+        <p class="proto-legenda">7. Tela do Painel do Professor</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    LogicaMente · Projeto acadêmico de Pensamento Computacional · 2026
+  </footer>
+</body>
+</html>

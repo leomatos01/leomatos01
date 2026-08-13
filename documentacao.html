@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Documentação Técnica</title>
+  <meta name="description" content="Requisitos, diagrama de classes e diagrama de casos de uso do projeto LogicaMente.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="assets/site.css?v=2">
+  <style>
+    .diagrama-wrap { overflow-x: auto; padding: 8px 0; }
+    svg.diagrama { display: block; margin: 0 auto; font-family: "Segoe UI", system-ui, sans-serif; }
+    .uml-caixa { fill: #ffffff; stroke: #6c5ce7; stroke-width: 1.5; }
+    .uml-titulo { fill: #f0eeff; stroke: #6c5ce7; stroke-width: 1.5; }
+    .uml-linha { stroke: #6c5ce7; stroke-width: 1; }
+    .uml-texto-titulo { font-weight: 700; font-size: 13px; fill: #2d3436; }
+    .uml-texto { font-size: 11.5px; fill: #2d3436; }
+    .uml-rel { stroke: #636e72; stroke-width: 1.4; fill: none; }
+    .uml-rel-texto { font-size: 10.5px; fill: #636e72; }
+    .ator { fill: none; stroke: #2d3436; stroke-width: 1.6; }
+    .caso-uso { fill: #f0eeff; stroke: #6c5ce7; stroke-width: 1.5; }
+    .caso-texto { font-size: 11px; fill: #2d3436; text-anchor: middle; }
+    .req-tabela td:first-child { white-space: nowrap; font-weight: 700; color: var(--roxo-escuro); }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="emoji">📐</div>
+    <h1>Documentação Técnica</h1>
+    <p>Requisitos, diagrama de classes e diagrama de casos de uso do LogicaMente.</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">Informações</a>
+    <a href="documentacao.html" class="ativo">Documentação</a>
+    <a href="prototipos.html">Protótipos</a>
+    <a href="testes.html">Testes</a>
+    <a href="metricas.html">Métricas e Avaliação</a>
+    <a href="apresentacao.html">Apresentação Final</a>
+    <a href="app/index.html">Aplicação</a>
+  </nav>
+
+  <main>
+    <h2>📋 Requisitos Funcionais (RF)</h2>
+    <div class="cartao tabela-wrap">
+      <table class="tabela req-tabela">
+        <thead><tr><th>ID</th><th>Descrição</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>RF01</td><td>O usuário deve se identificar (nome) e escolher um perfil (aluno ou professor) para acessar a aplicação.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF02</td><td>O sistema deve persistir o progresso do usuário entre sessões, no próprio navegador.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF03</td><td>O conteúdo deve ser organizado em uma trilha de módulos sequenciais, liberando o próximo apenas com nota mínima no anterior (RN01).</td><td>✅ Implementado</td></tr>
+          <tr><td>RF04</td><td>O sistema deve apresentar uma lição teórica antes dos exercícios de cada módulo.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF05</td><td>O sistema deve apresentar exercícios de múltipla escolha com correção automática.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF06</td><td>O sistema deve apresentar exercícios de verdadeiro/falso com correção automática.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF07</td><td>O sistema deve apresentar exercícios de ordenação de blocos de código (Parsons problems) com correção automática.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF08</td><td>O sistema deve conceder XP por exercício correto, com valor diferenciado conforme o número de tentativas (RN02).</td><td>✅ Implementado</td></tr>
+          <tr><td>RF09</td><td>O sistema deve conceder medalhas por conquistas específicas do aluno.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF10</td><td>O sistema deve exibir um ranking dos alunos da turma ordenado por XP (RN03).</td><td>✅ Implementado</td></tr>
+          <tr><td>RF11</td><td>O sistema deve fornecer um painel para o professor com relatórios de desempenho da turma.</td><td>✅ Implementado</td></tr>
+          <tr><td>RF12</td><td>O professor deve poder editar/adicionar conteúdo pedagógico pela própria interface.</td><td>🔜 Próximos passos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>⚙️ Requisitos Não Funcionais (RNF)</h2>
+    <div class="cartao tabela-wrap">
+      <table class="tabela req-tabela">
+        <thead><tr><th>ID</th><th>Descrição</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>RNF01</td><td>A aplicação deve ser responsiva (desktop, tablet e celular).</td><td>✅ Implementado</td></tr>
+          <tr><td>RNF02</td><td>A interface deve ser simples e acessível para iniciantes em programação.</td><td>✅ Implementado</td></tr>
+          <tr><td>RNF03</td><td>A aplicação não pode depender de servidores externos nem fazer requisições a APIs externas.</td><td>✅ Implementado</td></tr>
+          <tr><td>RNF04</td><td>A aplicação deve funcionar sem instalação, direto no navegador.</td><td>✅ Implementado</td></tr>
+          <tr><td>RNF05</td><td>A aplicação deve ter custo zero de hospedagem e disponibilidade 24/7.</td><td>✅ Implementado</td></tr>
+          <tr><td>RNF06</td><td>A aplicação deve ser compatível com os principais navegadores (Chrome, Firefox, Edge).</td><td>✅ Implementado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>🧩 Diagrama de Classes</h2>
+    <div class="cartao diagrama-wrap">
+      <svg class="diagrama" width="920" height="640" viewBox="0 0 920 640" xmlns="http://www.w3.org/2000/svg">
+        <!-- Usuario -->
+        <g transform="translate(20,20)">
+          <rect class="uml-titulo" width="220" height="26" />
+          <text x="110" y="18" text-anchor="middle" class="uml-texto-titulo">Usuario</text>
+          <rect class="uml-caixa" y="26" width="220" height="96" />
+          <line class="uml-linha" x1="0" y1="80" x2="220" y2="80" />
+          <text x="8" y="42" class="uml-texto">- nome: string</text>
+          <text x="8" y="58" class="uml-texto">- perfil: "aluno"|"professor"</text>
+          <text x="8" y="74" class="uml-texto">- xp: int</text>
+          <text x="8" y="96" class="uml-texto">+ registrarProgresso()</text>
+          <text x="8" y="112" class="uml-texto">+ atualizarStreak()</text>
+        </g>
+
+        <!-- Progresso -->
+        <g transform="translate(20,190)">
+          <rect class="uml-titulo" width="220" height="26" />
+          <text x="110" y="18" text-anchor="middle" class="uml-texto-titulo">ProgressoExercicio</text>
+          <rect class="uml-caixa" y="26" width="220" height="80" />
+          <line class="uml-linha" x1="0" y1="64" x2="220" y2="64" />
+          <text x="8" y="42" class="uml-texto">- resolvido: bool</text>
+          <text x="8" y="58" class="uml-texto">- primeiraTentativa: bool</text>
+          <text x="8" y="80" class="uml-texto">+ calcularNota()</text>
+        </g>
+
+        <!-- Medalha -->
+        <g transform="translate(20,340)">
+          <rect class="uml-titulo" width="220" height="26" />
+          <text x="110" y="18" text-anchor="middle" class="uml-texto-titulo">Medalha</text>
+          <rect class="uml-caixa" y="26" width="220" height="64" />
+          <line class="uml-linha" x1="0" y1="64" x2="220" y2="64" />
+          <text x="8" y="42" class="uml-texto">- id, nome, icone: string</text>
+          <text x="8" y="58" class="uml-texto">- descricao: string</text>
+        </g>
+
+        <!-- Modulo -->
+        <g transform="translate(350,20)">
+          <rect class="uml-titulo" width="230" height="26" />
+          <text x="115" y="18" text-anchor="middle" class="uml-texto-titulo">Modulo</text>
+          <rect class="uml-caixa" y="26" width="230" height="96" />
+          <line class="uml-linha" x1="0" y1="80" x2="230" y2="80" />
+          <text x="8" y="42" class="uml-texto">- id, titulo, descricao: string</text>
+          <text x="8" y="58" class="uml-texto">- licao: html</text>
+          <text x="8" y="74" class="uml-texto">- exercicios: Exercicio[]</text>
+          <text x="8" y="96" class="uml-texto">+ estaDesbloqueado()</text>
+          <text x="8" y="112" class="uml-texto">+ notaModulo()</text>
+        </g>
+
+        <!-- Exercicio (base) -->
+        <g transform="translate(350,190)">
+          <rect class="uml-titulo" width="230" height="26" />
+          <text x="115" y="18" text-anchor="middle" class="uml-texto-titulo">«abstrata» Exercicio</text>
+          <rect class="uml-caixa" y="26" width="230" height="80" />
+          <line class="uml-linha" x1="0" y1="64" x2="230" y2="64" />
+          <text x="8" y="42" class="uml-texto">- enunciado, dica: string</text>
+          <text x="8" y="58" class="uml-texto">- explicacao: string</text>
+          <text x="8" y="80" class="uml-texto">+ corrigir(resposta)</text>
+        </g>
+
+        <!-- Subtipos exercicio -->
+        <g transform="translate(320,340)">
+          <rect class="uml-titulo" width="150" height="26" />
+          <text x="75" y="18" text-anchor="middle" class="uml-texto-titulo">ExercicioQuiz</text>
+          <rect class="uml-caixa" y="26" width="150" height="48" />
+          <text x="8" y="42" class="uml-texto">- opcoes: string[]</text>
+          <text x="8" y="58" class="uml-texto">- resposta: int</text>
+        </g>
+        <g transform="translate(490,340)">
+          <rect class="uml-titulo" width="150" height="26" />
+          <text x="75" y="18" text-anchor="middle" class="uml-texto-titulo">ExercicioVF</text>
+          <rect class="uml-caixa" y="26" width="150" height="48" />
+          <text x="8" y="42" class="uml-texto">- resposta: bool</text>
+        </g>
+        <g transform="translate(660,340)">
+          <rect class="uml-titulo" width="150" height="26" />
+          <text x="75" y="18" text-anchor="middle" class="uml-texto-titulo">ExercicioOrdem</text>
+          <rect class="uml-caixa" y="26" width="150" height="48" />
+          <text x="8" y="42" class="uml-texto">- itens: string[]</text>
+        </g>
+
+        <!-- RelatorioProfessor -->
+        <g transform="translate(660,20)">
+          <rect class="uml-titulo" width="230" height="26" />
+          <text x="115" y="18" text-anchor="middle" class="uml-texto-titulo">RelatorioProfessor</text>
+          <rect class="uml-caixa" y="26" width="230" height="80" />
+          <line class="uml-linha" x1="0" y1="64" x2="230" y2="64" />
+          <text x="8" y="42" class="uml-texto">- turma, codigo: string</text>
+          <text x="8" y="58" class="uml-texto">- alunos: Usuario[]</text>
+          <text x="8" y="80" class="uml-texto">+ errosPorModulo()</text>
+        </g>
+
+        <!-- Relacionamentos -->
+        <!-- Usuario 1 -- * ProgressoExercicio -->
+        <path class="uml-rel" d="M130,116 L130,190" />
+        <text x="136" y="150" class="uml-rel-texto">1        *</text>
+        <text x="136" y="163" class="uml-rel-texto">possui</text>
+
+        <!-- Usuario 1 -- * Medalha -->
+        <path class="uml-rel" d="M130,116 L130,340" />
+        <text x="136" y="300" class="uml-rel-texto">1        *</text>
+        <text x="136" y="313" class="uml-rel-texto">conquista</text>
+
+        <!-- Modulo 1 -- * Exercicio -->
+        <path class="uml-rel" d="M465,116 L465,190" />
+        <text x="471" y="150" class="uml-rel-texto">1        *</text>
+        <text x="471" y="163" class="uml-rel-texto">contém</text>
+
+        <!-- Exercicio <|-- subtipos -->
+        <path class="uml-rel" d="M465,270 L395,340" marker-end="url(#seta-heranca)" />
+        <path class="uml-rel" d="M465,270 L565,340" marker-end="url(#seta-heranca)" />
+        <path class="uml-rel" d="M465,270 L735,270 L735,340" marker-end="url(#seta-heranca)" />
+
+        <!-- Modulo -- ProgressoExercicio (referencia) -->
+        <path class="uml-rel" d="M350,230 L240,230" stroke-dasharray="4 3" />
+        <text x="245" y="225" class="uml-rel-texto">referencia</text>
+
+        <!-- RelatorioProfessor -- Usuario -->
+        <path class="uml-rel" d="M660,60 L240,60" />
+        <text x="380" y="52" class="uml-rel-texto">1        *   agrega dados de</text>
+
+        <defs>
+          <marker id="seta-heranca" markerWidth="14" markerHeight="12" refX="12" refY="6" orient="auto">
+            <path d="M0,0 L12,6 L0,12 Z" fill="#ffffff" stroke="#6c5ce7" stroke-width="1.2"/>
+          </marker>
+        </defs>
+      </svg>
+      <p class="suave" style="text-align:center; color:var(--texto-suave); font-size:0.9rem;">
+        Fig. 1 — Diagrama de classes do LogicaMente. Correspondência com o código: <code>Usuario</code> → <code>estado</code>
+        em <code>app.js</code>; <code>Modulo</code>/<code>Exercicio</code> → <code>MODULOS</code> em <code>data.js</code>;
+        <code>Medalha</code> → <code>MEDALHAS</code>; <code>RelatorioProfessor</code> → <code>RELATORIO_DEMO</code>.
+      </p>
+    </div>
+
+    <h2>🎭 Diagrama de Casos de Uso</h2>
+    <div class="cartao diagrama-wrap">
+      <svg class="diagrama" width="820" height="480" viewBox="0 0 820 480" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ator Aluno -->
+        <g transform="translate(30,180)">
+          <circle class="ator" cx="24" cy="14" r="12" />
+          <line class="ator" x1="24" y1="26" x2="24" y2="70" />
+          <line class="ator" x1="0" y1="42" x2="48" y2="42" />
+          <line class="ator" x1="24" y1="70" x2="4" y2="100" />
+          <line class="ator" x1="24" y1="70" x2="44" y2="100" />
+          <text x="24" y="118" text-anchor="middle" class="uml-texto">Aluno</text>
+        </g>
+
+        <!-- Ator Professor -->
+        <g transform="translate(30,330)">
+          <circle class="ator" cx="24" cy="14" r="12" />
+          <line class="ator" x1="24" y1="26" x2="24" y2="70" />
+          <line class="ator" x1="0" y1="42" x2="48" y2="42" />
+          <line class="ator" x1="24" y1="70" x2="4" y2="100" />
+          <line class="ator" x1="24" y1="70" x2="44" y2="100" />
+          <text x="24" y="118" text-anchor="middle" class="uml-texto">Professor</text>
+        </g>
+
+        <!-- Casos de uso comuns -->
+        <ellipse class="caso-uso" cx="250" cy="40" rx="95" ry="26" />
+        <text x="250" y="44" class="caso-texto">Identificar-se na plataforma</text>
+
+        <ellipse class="caso-uso" cx="250" cy="110" rx="95" ry="26" />
+        <text x="250" y="114" class="caso-texto">Visualizar perfil</text>
+
+        <!-- Casos de uso do aluno -->
+        <ellipse class="caso-uso" cx="250" cy="180" rx="95" ry="26" />
+        <text x="250" y="184" class="caso-texto">Percorrer trilha de módulos</text>
+
+        <ellipse class="caso-uso" cx="470" cy="180" rx="100" ry="26" />
+        <text x="470" y="176" class="caso-texto">Estudar lição teórica</text>
+
+        <ellipse class="caso-uso" cx="470" cy="240" rx="100" ry="26" />
+        <text x="470" y="236" class="caso-texto">Responder exercício</text>
+        <text x="470" y="250" class="caso-texto" style="font-size:9.5px">(quiz / V-F / ordenar)</text>
+
+        <ellipse class="caso-uso" cx="700" cy="240" rx="95" ry="26" />
+        <text x="700" y="236" class="caso-texto">Receber feedback</text>
+        <text x="700" y="250" class="caso-texto" style="font-size:9.5px">(dica ou explicação)</text>
+
+        <ellipse class="caso-uso" cx="470" cy="300" rx="100" ry="26" />
+        <text x="470" y="296" class="caso-texto">Ganhar XP e medalhas</text>
+
+        <ellipse class="caso-uso" cx="250" cy="250" rx="95" ry="26" />
+        <text x="250" y="254" class="caso-texto">Visualizar ranking da turma</text>
+
+        <!-- Casos de uso do professor -->
+        <ellipse class="caso-uso" cx="470" cy="360" rx="105" ry="26" />
+        <text x="470" y="356" class="caso-texto">Visualizar painel de desempenho</text>
+        <text x="470" y="370" class="caso-texto" style="font-size:9.5px">da turma</text>
+
+        <ellipse class="caso-uso" cx="700" cy="400" rx="105" ry="26" />
+        <text x="700" y="404" class="caso-texto">Identificar módulos com mais erro</text>
+
+        <!-- Ligações Aluno -->
+        <path class="uml-rel" d="M78,220 L155,110" />
+        <path class="uml-rel" d="M78,220 L155,180" />
+        <path class="uml-rel" d="M78,220 L155,250" />
+        <path class="uml-rel" d="M78,200 L155,40" />
+
+        <!-- Ligações Professor -->
+        <path class="uml-rel" d="M78,370 L155,110" />
+        <path class="uml-rel" d="M78,380 L365,360" />
+        <path class="uml-rel" d="M78,360 L155,40" />
+
+        <!-- include -->
+        <path class="uml-rel" d="M345,180 L370,180" stroke-dasharray="4 3" marker-end="url(#seta-include)"/>
+        <text x="330" y="172" class="uml-rel-texto">«include»</text>
+
+        <path class="uml-rel" d="M345,215 L370,240" stroke-dasharray="4 3" marker-end="url(#seta-include)"/>
+        <text x="330" y="222" class="uml-rel-texto">«include»</text>
+
+        <path class="uml-rel" d="M570,240 L600,240" stroke-dasharray="4 3" marker-end="url(#seta-include)"/>
+        <text x="577" y="232" class="uml-rel-texto">«include»</text>
+
+        <path class="uml-rel" d="M470,266 L470,274" stroke-dasharray="4 3" marker-end="url(#seta-include)"/>
+        <text x="500" y="285" class="uml-rel-texto">«extend» se acertou</text>
+
+        <path class="uml-rel" d="M575,360 L595,390" stroke-dasharray="4 3" marker-end="url(#seta-include)"/>
+        <text x="578" y="378" class="uml-rel-texto">«include»</text>
+
+        <defs>
+          <marker id="seta-include" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#636e72" />
+          </marker>
+        </defs>
+      </svg>
+      <p class="suave" style="text-align:center; color:var(--texto-suave); font-size:0.9rem;">
+        Fig. 2 — Diagrama de casos de uso. Atores: <strong>Aluno</strong> e <strong>Professor</strong>.
+        "Responder exercício" inclui "Receber feedback" e estende para "Ganhar XP e medalhas" quando a resposta está correta.
+      </p>
+    </div>
+
+    <h2>🗂️ Rastreabilidade requisito → caso de uso → código</h2>
+    <div class="cartao tabela-wrap">
+      <table class="tabela">
+        <thead><tr><th>Requisito</th><th>Caso de uso</th><th>Função em <code>app.js</code></th></tr></thead>
+        <tbody>
+          <tr><td>RF01</td><td>Identificar-se na plataforma</td><td><code>iniciarSessao()</code></td></tr>
+          <tr><td>RF03</td><td>Percorrer trilha de módulos</td><td><code>moduloDesbloqueado()</code>, <code>renderTrilha()</code></td></tr>
+          <tr><td>RF05–RF07</td><td>Responder exercício</td><td><code>abrirExercicio()</code>, <code>respostaCorreta()</code></td></tr>
+          <tr><td>RF08–RF09</td><td>Ganhar XP e medalhas</td><td><code>verificar()</code>, <code>darMedalha()</code></td></tr>
+          <tr><td>RF10</td><td>Visualizar ranking da turma</td><td><code>renderRanking()</code></td></tr>
+          <tr><td>RF11</td><td>Visualizar painel de desempenho</td><td><code>renderPainelProfessor()</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    LogicaMente · Projeto acadêmico de Pensamento Computacional · 2026
+  </footer>
+</body>
+</html>

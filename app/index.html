@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Aprenda Lógica de Programação</title>
+  <meta name="description" content="Plataforma gamificada de ensino de lógica de programação e pensamento computacional.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Tela de login -->
+  <section id="tela-login" class="tela">
+    <div class="login-box">
+      <div class="logo">🧠</div>
+      <h1>Logica<span>Mente</span></h1>
+      <p class="subtitulo">Aprenda lógica de programação e pensamento computacional de forma divertida!</p>
+      <form id="form-login">
+        <label for="input-nome">Como podemos te chamar?</label>
+        <input id="input-nome" type="text" placeholder="Seu nome" maxlength="30" required autocomplete="name">
+        <div class="perfis">
+          <label class="opcao"><input type="radio" name="perfil" value="aluno" checked><span>🎓 Sou Aluno</span></label>
+          <label class="opcao"><input type="radio" name="perfil" value="professor"><span>🧑‍🏫 Sou Professor</span></label>
+        </div>
+        <button type="submit" class="btn btn-primario btn-grande">Começar a aprender 🚀</button>
+      </form>
+      <p class="nota-login">Seu progresso é salvo automaticamente neste navegador.</p>
+    </div>
+  </section>
+
+  <!-- Estrutura do app (header + nav), oculta até o login -->
+  <div id="chrome" class="oculto">
+    <header class="topo">
+      <div class="topo-marca">🧠 Logica<span>Mente</span></div>
+      <div class="topo-hud">
+        <span id="hud-xp" class="pilula">⭐ 0 XP</span>
+        <span id="hud-streak" class="pilula">🔥 1 dia</span>
+        <span id="hud-nome" class="pilula pilula-nome"></span>
+        <button id="btn-sair" class="btn btn-fantasma" title="Sair">Sair</button>
+      </div>
+    </header>
+    <nav class="navegacao">
+      <button class="nav-btn" data-tela="tela-trilha">🗺️ Trilha</button>
+      <button class="nav-btn" data-tela="tela-ranking">🏅 Ranking</button>
+      <button class="nav-btn" data-tela="tela-perfil">👤 Perfil</button>
+      <button class="nav-btn oculto" id="nav-professor" data-tela="tela-professor">📊 Painel do Professor</button>
+    </nav>
+  </div>
+
+  <main>
+    <!-- Trilha de aprendizado -->
+    <section id="tela-trilha" class="tela">
+      <h2 class="titulo-tela">🗺️ Sua trilha de aprendizado</h2>
+      <p class="descricao-tela">Conclua cada módulo com nota mínima de 70% para desbloquear o próximo.</p>
+      <div id="lista-modulos"></div>
+    </section>
+
+    <!-- Lição -->
+    <section id="tela-licao" class="tela">
+      <div id="licao-conteudo" class="licao"></div>
+      <div class="acoes-centro">
+        <button id="btn-ir-exercicios" class="btn btn-primario btn-grande">Praticar agora ✏️</button>
+      </div>
+    </section>
+
+    <!-- Exercício -->
+    <section id="tela-exercicio" class="tela">
+      <p id="ex-progresso" class="ex-progresso"></p>
+      <div class="cartao">
+        <pre id="ex-enunciado" class="enunciado"></pre>
+        <div id="ex-area"></div>
+        <div id="ex-feedback" class="feedback"></div>
+        <div class="acoes-exercicio">
+          <button id="btn-voltar-trilha" class="btn btn-secundario">← Trilha</button>
+          <button id="btn-verificar" class="btn btn-primario">Verificar resposta</button>
+          <button id="btn-proximo" class="btn btn-primario oculto">Próximo exercício →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ranking -->
+    <section id="tela-ranking" class="tela">
+      <h2 class="titulo-tela">🏅 Ranking da turma</h2>
+      <p class="descricao-tela">O ranking exibe apenas alunos da sua turma (dados de demonstração).</p>
+      <div class="cartao">
+        <table class="tabela">
+          <thead><tr><th>Posição</th><th>Aluno</th><th>Pontuação</th></tr></thead>
+          <tbody id="ranking-corpo"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Perfil -->
+    <section id="tela-perfil" class="tela">
+      <h2 class="titulo-tela">👤 Meu perfil</h2>
+      <div class="cartao perfil-resumo">
+        <h3 id="perfil-nome"></h3>
+        <div class="estatisticas">
+          <div class="stat"><span id="perfil-xp">0</span><small>XP total</small></div>
+          <div class="stat"><span id="perfil-streak">1</span><small>dias seguidos</small></div>
+          <div class="stat"><span id="perfil-exercicios">0/16</span><small>exercícios</small></div>
+        </div>
+      </div>
+      <h3 class="subtitulo-secao">🎖️ Medalhas</h3>
+      <div id="perfil-medalhas" class="grade-medalhas"></div>
+    </section>
+
+    <!-- Painel do professor -->
+    <section id="tela-professor" class="tela">
+      <h2 class="titulo-tela">📊 Painel do Professor</h2>
+      <p class="descricao-tela">Relatórios de desempenho da turma (dados simulados para demonstração).</p>
+      <div class="cartao">
+        <h3 id="prof-turma"></h3>
+        <p>Código de convite da turma: <strong id="prof-codigo" class="pilula"></strong></p>
+      </div>
+      <div class="cartao">
+        <h3>Desempenho dos alunos</h3>
+        <table class="tabela">
+          <thead><tr><th>Aluno</th><th>Progresso</th><th>Acerto na 1ª tentativa</th></tr></thead>
+          <tbody id="prof-alunos"></tbody>
+        </table>
+        <small>⚠️ indica aluno com taxa de acerto abaixo de 60% — precisa de reforço.</small>
+      </div>
+      <div class="cartao">
+        <h3>Módulos com mais erros</h3>
+        <div id="prof-erros"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

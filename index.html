@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Informações do Projeto</title>
+  <meta name="description" content="Página de informações do projeto LogicaMente: plataforma web gamificada para ensino de lógica de programação e pensamento computacional.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="assets/site.css?v=2">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="emoji">🧠</div>
+    <h1>LogicaMente</h1>
+    <p>Plataforma web gamificada para o ensino de lógica de programação e pensamento computacional.</p>
+    <a class="btn btn-claro" href="app/index.html">🚀 Acessar a aplicação online</a>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html" class="ativo">Informações</a>
+    <a href="documentacao.html">Documentação</a>
+    <a href="prototipos.html">Protótipos</a>
+    <a href="testes.html">Testes</a>
+    <a href="metricas.html">Métricas e Avaliação</a>
+    <a href="apresentacao.html">Apresentação Final</a>
+    <a href="app/index.html">Aplicação</a>
+    <a id="link-repo" href="#repositorio">Repositório</a>
+  </nav>
+
+  <main>
+    <h2>📌 Sobre o projeto</h2>
+    <div class="cartao">
+      <p>O <strong>LogicaMente</strong> é uma aplicação web desenvolvida como projeto acadêmico com o tema
+      <em>"Pensamento Computacional: Elaboração de Cursos de Informática, Lógica de Programação ou
+      Qualquer Tema Relacionado à Computação"</em>.</p>
+      <p><strong>Problema:</strong> disciplinas introdutórias de programação apresentam altas taxas de
+      reprovação e desistência, causadas pela falta de base em raciocínio lógico, pela ausência de
+      feedback imediato e por ritmos de aprendizado heterogêneos nas turmas.</p>
+      <p><strong>Solução:</strong> uma trilha de aprendizado progressiva e gamificada, com lições
+      teóricas curtas, exercícios interativos de correção automática, feedback imediato com dicas,
+      sistema de pontos (XP), medalhas, ranking por turma e painel de acompanhamento para o professor.</p>
+    </div>
+
+    <h2>⚙️ Funcionalidades</h2>
+    <div class="grade">
+      <div class="cartao"><h3>🗺️ Trilha progressiva</h3><p>4 módulos (Pensamento Computacional, Algoritmos e Variáveis, Condicionais e Laços). O próximo módulo só é liberado com nota ≥ 70% no anterior.</p></div>
+      <div class="cartao"><h3>✏️ Exercícios interativos</h3><p>Múltipla escolha, verdadeiro/falso e ordenação de blocos de código (Parsons problems), com correção automática.</p></div>
+      <div class="cartao"><h3>💡 Feedback imediato</h3><p>Dica ao errar, explicação ao acertar. Pontuação máxima apenas na primeira tentativa.</p></div>
+      <div class="cartao"><h3>🏅 Gamificação</h3><p>XP por exercício, 5 medalhas por conquistas, sequência de dias de estudo (streak) e ranking por turma.</p></div>
+      <div class="cartao"><h3>📊 Painel do Professor</h3><p>Relatórios de progresso da turma, taxa de acerto por aluno e módulos com mais erros.</p></div>
+      <div class="cartao"><h3>📱 Responsiva e acessível</h3><p>Funciona em desktop, tablet e celular, direto no navegador, sem instalação.</p></div>
+    </div>
+
+    <h2>🔗 Acesso</h2>
+    <div class="cartao">
+      <p><strong>Aplicação online:</strong> <a href="app/index.html">acesse aqui a aplicação LogicaMente</a> — não requer cadastro externo nem instalação; basta informar seu nome.</p>
+      <p id="repositorio"><strong>Código-fonte:</strong> disponível publicamente no repositório GitHub —
+      <a href="https://github.com/leomatos01/leomatos01" target="_blank" rel="noopener">github.com/leomatos01/leomatos01</a>.</p>
+      <p><strong>Documentação técnica:</strong> disponível no <code>README.md</code> do repositório.</p>
+    </div>
+
+    <h2>🛠️ Tecnologias utilizadas</h2>
+    <div class="cartao">
+      <ul>
+        <li><strong>HTML5, CSS3 e JavaScript (vanilla)</strong> — front-end sem frameworks, garantindo leveza e carregamento rápido;</li>
+        <li><strong>localStorage</strong> — persistência do progresso do aluno no navegador, permitindo hospedagem 100% estática;</li>
+        <li><strong>GitHub Pages</strong> — publicação gratuita e disponível 24/7;</li>
+        <li><strong>Git/GitHub</strong> — versionamento e código aberto.</li>
+      </ul>
+      <div class="destaque">
+        <strong>Decisão de arquitetura:</strong> a aplicação foi projetada como <em>site estático</em>
+        para atender ao requisito de publicação no GitHub Pages. A persistência local via
+        <code>localStorage</code> elimina a necessidade de servidor e banco de dados, mantendo o
+        custo zero e a disponibilidade total.
+      </div>
+    </div>
+
+    <h2>👥 Equipe</h2>
+    <div class="cartao">
+      <p><strong>Leonardo Presotto de Matos</strong></p>
+      <p>Centro Universitário Filadélfia — UniFil</p>
+    </div>
+  </main>
+
+  <footer>
+    LogicaMente · Projeto acadêmico de Pensamento Computacional · 2026
+  </footer>
+</body>
+</html>

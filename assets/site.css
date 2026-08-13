@@ -1,0 +1,92 @@
+/* Site institucional do projeto LogicaMente (GitHub Pages) */
+
+:root {
+  --roxo: #6c5ce7;
+  --roxo-escuro: #5a4bd1;
+  --fundo: #f5f6fa;
+  --cartao: #ffffff;
+  --texto: #2d3436;
+  --texto-suave: #636e72;
+  --borda: #e6e9f0;
+  --sombra: 0 4px 16px rgba(45, 52, 84, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.7;
+}
+
+.hero {
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+  color: #fff; text-align: center; padding: 60px 20px 50px;
+}
+.hero .emoji { font-size: 3.5rem; }
+.hero h1 { font-size: 2.4rem; }
+.hero p { font-size: 1.15rem; opacity: 0.95; max-width: 640px; margin: 8px auto 24px; }
+
+.menu {
+  background: var(--cartao); border-bottom: 1px solid var(--borda);
+  display: flex; justify-content: center; gap: 4px; flex-wrap: wrap;
+  padding: 10px 16px; position: sticky; top: 0; z-index: 10;
+}
+.menu a {
+  color: var(--texto-suave); text-decoration: none; font-weight: 600;
+  padding: 8px 16px; border-radius: 10px;
+}
+.menu a:hover { background: #ebedf5; }
+.menu a.ativo { background: var(--roxo); color: #fff; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 16px 80px; }
+
+h2 { font-size: 1.6rem; margin: 32px 0 12px; }
+h3 { margin: 20px 0 8px; }
+p { margin-bottom: 12px; }
+ul, ol { margin: 0 0 16px 24px; }
+li { margin-bottom: 6px; }
+
+.cartao {
+  background: var(--cartao); border-radius: 14px;
+  box-shadow: var(--sombra); padding: 24px 28px; margin-bottom: 18px;
+}
+
+main a:not(.btn) { color: var(--roxo); font-weight: 600; }
+main a:not(.btn):visited { color: var(--roxo); }
+main a:not(.btn):hover { color: var(--roxo-escuro); text-decoration: underline; }
+
+.btn {
+  display: inline-block; background: var(--roxo); color: #fff; text-decoration: none;
+  font-weight: 700; padding: 14px 28px; border-radius: 12px; transition: background 0.2s;
+}
+.btn:hover { background: var(--roxo-escuro); }
+.btn-claro { background: #fff; color: var(--roxo); }
+.btn-claro:hover { background: #f0eeff; }
+
+.tabela { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.tabela th, .tabela td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--borda); vertical-align: top; }
+.tabela th { color: var(--texto-suave); font-size: 0.85rem; text-transform: uppercase; }
+
+.destaque {
+  background: #f0eeff; border-left: 4px solid var(--roxo);
+  border-radius: 8px; padding: 14px 18px; margin: 16px 0;
+}
+
+.grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 16px 0; }
+.grade .cartao { margin-bottom: 0; }
+
+.video-placeholder {
+  background: #2d3436; color: #dfe6e9; border-radius: 14px;
+  padding: 60px 20px; text-align: center; margin: 16px 0;
+}
+
+code { background: #eceef5; padding: 2px 6px; border-radius: 5px; font-size: 0.9em; }
+
+footer {
+  text-align: center; color: var(--texto-suave);
+  padding: 24px; border-top: 1px solid var(--borda); font-size: 0.9rem;
+}
+
+.tabela-wrap { overflow-x: auto; }

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicaMente — Métricas e Avaliação</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="assets/site.css?v=2">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="emoji">📈</div>
+    <h1>Métricas e Avaliação</h1>
+    <p>Como medimos o sucesso do LogicaMente e o que aprendemos no caminho.</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">Informações</a>
+    <a href="documentacao.html">Documentação</a>
+    <a href="prototipos.html">Protótipos</a>
+    <a href="testes.html">Testes</a>
+    <a href="metricas.html" class="ativo">Métricas e Avaliação</a>
+    <a href="apresentacao.html">Apresentação Final</a>
+    <a href="app/index.html">Aplicação</a>
+  </nav>
+
+  <main>
+    <h2>📊 Métricas de sucesso</h2>
+    <p>Propomos <strong>5 métricas</strong> para que o parceiro avalie objetivamente o sucesso da
+    plataforma. Cada métrica tem uma meta inicial e uma forma de coleta definida.</p>
+
+    <div class="tabela-wrap cartao">
+      <table class="tabela">
+        <thead>
+          <tr><th>Métrica</th><th>O que mede</th><th>Meta inicial</th><th>Como coletar</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Número de acessos e usuários ativos</strong></td>
+            <td>Alcance da plataforma: visitas à página e usuários que iniciam a trilha por mês.</td>
+            <td>100 usuários ativos/mês no primeiro semestre.</td>
+            <td>Google Analytics (ou Plausible) integrado às páginas.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Taxa de conclusão de módulos</strong></td>
+            <td>Engajamento real: % de usuários que iniciam um módulo e o concluem (funil módulo 1 → módulo 4).</td>
+            <td>≥ 60% concluem o módulo 1; ≥ 30% concluem o curso completo.</td>
+            <td>Dados de progresso da própria aplicação (eventos de conclusão).</td>
+          </tr>
+          <tr>
+            <td><strong>3. Taxa de acerto na 1ª tentativa</strong></td>
+            <td>Eficácia pedagógica: se o conteúdo teórico está preparando bem o aluno para os exercícios.</td>
+            <td>Entre 60% e 80% (abaixo indica lição fraca; acima, exercícios fáceis demais).</td>
+            <td>Registro de tentativas por exercício na aplicação (painel do professor).</td>
+          </tr>
+          <tr>
+            <td><strong>4. Retenção (retorno em 7 dias)</strong></td>
+            <td>Se a gamificação está funcionando: % de usuários que retornam à plataforma na semana seguinte ao primeiro acesso.</td>
+            <td>≥ 40% de retorno em 7 dias.</td>
+            <td>Google Analytics (coortes) + dado de sequência de dias (streak) da aplicação.</td>
+          </tr>
+          <tr>
+            <td><strong>5. Satisfação do usuário (NPS)</strong></td>
+            <td>Percepção de valor: "de 0 a 10, quanto você recomendaria o LogicaMente a um colega?"</td>
+            <td>NPS ≥ 50 (zona de qualidade).</td>
+            <td>Formulário rápido (Google Forms) exibido ao concluir um módulo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="destaque">
+      <strong>Por que essas métricas?</strong> Juntas, elas cobrem todo o ciclo do usuário:
+      <em>chegar</em> (acessos) → <em>usar</em> (conclusão) → <em>aprender</em> (acerto na 1ª tentativa)
+      → <em>voltar</em> (retenção) → <em>recomendar</em> (NPS). Nenhuma métrica isolada conta a
+      história completa: muitos acessos com baixa conclusão indicam problema de engajamento;
+      alta conclusão com baixo acerto indica problema pedagógico.
+    </div>
+
+    <h2>🧪 Resultados de testes</h2>
+    <div class="cartao">
+      <p>A suíte de <a href="testes.html">testes automatizados</a> valida o conteúdo pedagógico (16
+      exercícios, respostas válidas, sem duplicatas) e as regras de negócio RN01/RN02. Além disso,
+      testes funcionais foram realizados manualmente sobre os demais requisitos:</p>
+      <ul>
+        <li>✅ Cadastro/identificação de usuário e persistência do progresso (RF01/RF02 adaptados para versão estática);</li>
+        <li>✅ Bloqueio e desbloqueio de módulos conforme a regra de nota mínima de 70% (RN01);</li>
+        <li>✅ Correção automática dos 3 tipos de exercício com feedback imediato (RF05–RF07);</li>
+        <li>✅ Atribuição de XP, medalhas e ranking (RF08/RF09) — pontuação máxima somente na 1ª tentativa (RN02);</li>
+        <li>✅ Painel do professor com relatórios de desempenho (RF11);</li>
+        <li>✅ Responsividade verificada em resoluções de desktop e celular (RNF01);</li>
+        <li>✅ Compatibilidade com Chrome, Firefox e Edge (RNF06).</li>
+      </ul>
+    </div>
+
+    <h2>🎓 Lições aprendidas</h2>
+    <div class="cartao">
+      <p>Durante o desenvolvimento do LogicaMente, três lições se destacaram. <strong>Primeira:</strong>
+      o levantamento de requisitos feito antes de escrever qualquer linha de código foi o que manteve o
+      projeto no rumo — sempre que surgia uma ideia nova, a pergunta "isso atende a qual requisito?"
+      evitou desperdício de tempo com funcionalidades supérfluas. <strong>Segunda:</strong> as
+      restrições técnicas moldam a arquitetura, e isso não é ruim: a exigência de publicar no GitHub
+      Pages (hospedagem estática, sem servidor) nos levou a uma solução com JavaScript puro e
+      <code>localStorage</code> que se mostrou mais simples, mais rápida e com custo zero — a limitação
+      virou diferencial. <strong>Terceira:</strong> testar cedo com usuários reais muda o produto:
+      pequenas sessões de teste revelaram que o feedback de erro precisava de <em>dicas graduais</em>
+      (e não apenas "errado"), o que transformou a experiência de frustrante em motivadora e reforçou
+      que, em software educacional, a forma de comunicar o erro importa tanto quanto o conteúdo ensinado.</p>
+    </div>
+  </main>
+
+  <footer>
+    LogicaMente · Projeto acadêmico de Pensamento Computacional · 2026
+  </footer>
+</body>
+</html>
