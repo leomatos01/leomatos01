@@ -11,18 +11,61 @@ const MODULOS = [
       <h2>🧠 Pensamento Computacional</h2>
       <p><strong>Pensamento computacional</strong> é a habilidade de resolver problemas de forma
       estruturada, como um computador processaria — mas quem pensa é você! Ele se apoia em
-      <strong>4 pilares</strong>:</p>
-      <ul>
-        <li><strong>Decomposição</strong> — quebrar um problema grande em partes menores e mais simples.</li>
-        <li><strong>Reconhecimento de padrões</strong> — perceber semelhanças e repetições entre problemas.</li>
-        <li><strong>Abstração</strong> — focar no que é essencial e ignorar detalhes irrelevantes.</li>
-        <li><strong>Algoritmos</strong> — criar uma sequência de passos clara para resolver o problema.</li>
-      </ul>
+      <strong>4 pilares</strong>, que você vai usar em praticamente todo exercício deste curso.
+      Vamos ver cada um com calma, com um exemplo próprio.</p>
+
+      <h3>1. Decomposição 🧩</h3>
+      <p>Consiste em quebrar um problema grande e complicado em partes menores e mais fáceis de
+      resolver. Problemas grandes assustam; problemas pequenos são gerenciáveis.</p>
       <div class="exemplo">
-        <h3>Exemplo do dia a dia 🍰</h3>
-        <p>Fazer um bolo: você <em>decompõe</em> a tarefa (separar ingredientes, misturar, assar),
-        <em>reconhece padrões</em> (toda receita tem preparo e cozimento), <em>abstrai</em>
-        (não importa a marca da farinha) e segue um <em>algoritmo</em> (a receita, passo a passo).</p>
+        <strong>Exemplo:</strong> organizar uma mudança de casa parece enorme, mas decomposta vira:
+        embalar os pertences, contratar o transporte, levar as caixas, desembalar no novo lugar.
+        Cada parte, sozinha, é simples.
+      </div>
+
+      <h3>2. Reconhecimento de padrões 🔎</h3>
+      <p>É perceber semelhanças e repetições entre problemas diferentes — quando você nota um
+      padrão, pode reaproveitar a mesma solução várias vezes, em vez de reinventar tudo do zero.</p>
+      <div class="exemplo">
+        <strong>Exemplo:</strong> calcular a média de qualquer lista de números — sejam notas de
+        prova, preços de produtos ou temperaturas — segue sempre os mesmos passos: somar tudo e
+        dividir pela quantidade de itens.
+      </div>
+
+      <h3>3. Abstração 🎯</h3>
+      <p>É focar apenas no que é essencial para resolver o problema, ignorando os detalhes que não
+      importam. Abstrair é filtrar informação, não acumular.</p>
+      <div class="exemplo">
+        <strong>Exemplo:</strong> um mapa de metrô não desenha prédios, ruas nem árvores — mostra só
+        as linhas e as estações, porque é só disso que um passageiro precisa para se guiar.
+      </div>
+
+      <h3>4. Algoritmos 📋</h3>
+      <p>É criar uma sequência de passos clara, ordenada e sem ambiguidade para resolver o
+      problema. Um algoritmo bem escrito, qualquer pessoa (ou computador) consegue seguir.</p>
+      <div class="exemplo">
+        <strong>Exemplo:</strong> uma receita de bolo é um algoritmo: separar ingredientes, misturar
+        na ordem certa, assar por um tempo determinado, esperar esfriar. Pular ou trocar a ordem de
+        um passo muda o resultado.
+      </div>
+
+      <h3>Juntando tudo: um exemplo completo 🎓</h3>
+      <p>Vamos aplicar os 4 pilares a um problema real: <em>"organizar a formatura da turma"</em>.</p>
+      <ul>
+        <li><strong>Decomposição:</strong> dividir em convites, local, buffet, música e fotos.</li>
+        <li><strong>Reconhecimento de padrões:</strong> perceber que "escolher fornecedor" se repete
+        para buffet, música e fotos — sempre envolve pedir orçamento, comparar preços e decidir.</li>
+        <li><strong>Abstração:</strong> para decidir o buffet, o que importa é preço, cardápio e
+        disponibilidade — não importa, por exemplo, a cor do uniforme dos garçons.</li>
+        <li><strong>Algoritmo:</strong> a lista final de passos, na ordem certa, do primeiro contato
+        com os fornecedores até o grande dia.</li>
+      </ul>
+
+      <div class="atencao">
+        ⚠️ <strong>Erro comum:</strong> confundir decomposição com abstração. Decompor é
+        <strong>dividir</strong> o problema em partes menores; abstrair é <strong>filtrar</strong>
+        quais detalhes realmente importam. São pilares diferentes, mas costumam aparecer juntos na
+        prática.
       </div>`,
     exercicios: [
       {
@@ -49,6 +92,21 @@ const MODULOS = [
         explicacao: "Reconhecer que problemas diferentes seguem a mesma estrutura é o pilar do reconhecimento de padrões."
       },
       {
+        tipo: "quiz",
+        enunciado: "Escrever a sequência exata de passos, na ordem certa, para trocar um pneu furado é um exemplo de qual pilar?",
+        opcoes: ["Abstração", "Reconhecimento de padrões", "Algoritmo", "Decomposição"],
+        resposta: 2,
+        dica: "É uma sequência ordenada de passos para resolver um problema...",
+        explicacao: "Uma sequência clara e ordenada de passos é, por definição, um algoritmo."
+      },
+      {
+        tipo: "vf",
+        enunciado: "Um mapa de metrô, que mostra só linhas e estações e omite prédios e ruas, é um exemplo de abstração.",
+        resposta: true,
+        dica: "O mapa filtrou o que não importa para quem vai pegar o trem.",
+        explicacao: "Verdadeiro! O mapa manteve só o essencial (linhas e estações) e descartou o resto — isso é abstração."
+      },
+      {
         tipo: "ordem",
         enunciado: "Ordene os passos do algoritmo \"atravessar a rua com segurança\":",
         itens: [
@@ -67,12 +125,13 @@ const MODULOS = [
     id: "alg",
     titulo: "Algoritmos e Variáveis",
     icone: "📦",
-    descricao: "Sequências de passos, variáveis e tipos de dados.",
+    descricao: "Sequências de passos, variáveis, tipos de dados e operadores.",
     licao: `
       <h2>📦 Algoritmos e Variáveis</h2>
       <p>Um <strong>algoritmo</strong> é uma sequência finita e ordenada de passos para resolver um
       problema. Para guardar informações durante a execução, usamos <strong>variáveis</strong>:
-      "caixinhas" com um nome que armazenam um valor.</p>
+      "caixinhas" com um nome que armazenam um valor, e cujo conteúdo pode mudar ao longo do
+      algoritmo.</p>
       <pre><code>algoritmo "media"
 var
    nota1, nota2, media: real
@@ -82,17 +141,62 @@ inicio
    media <- (nota1 + nota2) / 2
    escreva("Média: ", media)
 fimalgoritmo</code></pre>
-      <p>Principais <strong>tipos de dados</strong>:</p>
+      <p>Nomes de variáveis não podem ter espaços nem começar com número — prefira nomes que
+      expliquem o que guardam, como <code>nota1</code> em vez de <code>x</code>.</p>
+
+      <h3>Tipos de dados</h3>
       <ul>
-        <li><strong>inteiro</strong> — números sem casas decimais: 10, -3, 2026</li>
-        <li><strong>real</strong> — números com casas decimais: 7.5, -0.2</li>
-        <li><strong>caractere</strong> (texto/string) — "Olá, mundo!"</li>
-        <li><strong>lógico</strong> — verdadeiro ou falso</li>
+        <li><strong>inteiro</strong> — números sem casas decimais: <code>10</code>, <code>-3</code>, <code>2026</code></li>
+        <li><strong>real</strong> — números com casas decimais: <code>7.5</code>, <code>-0.2</code></li>
+        <li><strong>caractere</strong> (texto/string) — <code>"Olá, mundo!"</code>, <code>"turma A"</code></li>
+        <li><strong>lógico</strong> — apenas <code>verdadeiro</code> ou <code>falso</code></li>
       </ul>
+
+      <h3>Atribuição ⬅️</h3>
+      <p>O símbolo <code>&lt;-</code> guarda um valor na variável: <code>idade &lt;- 20</code>
+      significa "a variável idade recebe o valor 20". Depois de atribuído, o valor pode ser trocado
+      quantas vezes o algoritmo precisar: <code>idade &lt;- idade + 1</code> substitui o valor antigo
+      pelo novo (idade mais 1).</p>
+
+      <h3>Operadores aritméticos ➕➖✖️➗</h3>
+      <p>Para calcular valores com variáveis, usamos operadores:</p>
+      <ul>
+        <li><code>+</code> soma, <code>-</code> subtração, <code>*</code> multiplicação, <code>/</code> divisão (com casas decimais)</li>
+        <li><code>DIV</code> — divisão inteira, descarta o resto</li>
+        <li><code>MOD</code> — resto da divisão</li>
+      </ul>
+      <pre><code>total <- 17 / 2      // 8.5
+inteiro <- 17 DIV 2  // 8
+resto <- 17 MOD 2    // 1</code></pre>
       <div class="exemplo">
-        <h3>Atribuição ⬅️</h3>
-        <p>O símbolo <code>&lt;-</code> guarda um valor na variável: <code>idade &lt;- 20</code>
-        significa "a variável idade recebe o valor 20".</p>
+        <strong>Exemplo:</strong> para saber quantas caixas de 6 ovos cabem em 20 ovos, e quantos
+        ovos sobram: <code>caixas &lt;- 20 DIV 6</code> (resultado 3) e <code>sobra &lt;- 20 MOD 6</code>
+        (resultado 2).
+      </div>
+
+      <h3>Constantes vs. variáveis</h3>
+      <p>Uma <strong>variável</strong> pode mudar de valor durante a execução do algoritmo. Uma
+      <strong>constante</strong> recebe um valor que nunca muda, do início ao fim: por exemplo,
+      <code>PI &lt;- 3.14159</code>.</p>
+
+      <h3>Exemplo completo: área de um retângulo 📐</h3>
+      <pre><code>algoritmo "area_retangulo"
+var
+   base, altura, area: real
+inicio
+   leia(base)
+   leia(altura)
+   area <- base * altura
+   escreva("Área: ", area)
+fimalgoritmo</code></pre>
+      <p>Se <code>base = 5</code> e <code>altura = 3</code>, o algoritmo calcula
+      <code>area = 5 * 3 = 15</code> e escreve "Área: 15". Ele apenas lê, calcula e mostra —
+      esse padrão de <em>entrada → processamento → saída</em> aparece na maioria dos algoritmos.</p>
+
+      <div class="atencao">
+        ⚠️ <strong>Erro comum:</strong> confundir <code>=</code> (igualdade, usada para comparar dois
+        valores) com <code>&lt;-</code> (atribuição, usada para guardar um valor numa variável). São
+        operações diferentes, mesmo em linguagens de programação reais.
       </div>`,
     exercicios: [
       {
@@ -117,6 +221,21 @@ fimalgoritmo</code></pre>
         resposta: false,
         dica: "\"Maria\" é um texto. Que tipo guarda textos?",
         explicacao: "Falso! Textos são armazenados no tipo caractere (string). O tipo lógico guarda apenas verdadeiro/falso."
+      },
+      {
+        tipo: "quiz",
+        enunciado: "Qual é o resultado de 17 DIV 5?",
+        opcoes: ["3", "3.4", "2", "5"],
+        resposta: 0,
+        dica: "DIV descarta as casas decimais e fica só com a parte inteira da divisão.",
+        explicacao: "17 dividido por 5 dá 3.4; a divisão inteira (DIV) descarta a parte decimal e resulta em 3."
+      },
+      {
+        tipo: "vf",
+        enunciado: "Uma constante pode ter seu valor alterado durante a execução do algoritmo.",
+        resposta: false,
+        dica: "O nome já dá a dica: constante é o que NÃO muda.",
+        explicacao: "Falso! Diferente das variáveis, o valor de uma constante é fixo do início ao fim da execução."
       },
       {
         tipo: "ordem",
@@ -160,6 +279,45 @@ fimse</code></pre>
         <h3>Exemplo 🎢</h3>
         <p>Para entrar no brinquedo: <code>se (altura >= 1.40) E (idade >= 12)</code> — as DUAS
         condições precisam ser atendidas.</p>
+      </div>
+
+      <h3>Se, senão se, senão: múltiplas condições</h3>
+      <p>Quando há mais de duas possibilidades, encadeamos com <code>senao se</code>:</p>
+      <pre><code>se (media >= 9) entao
+   escreva("Excelente")
+senao se (media >= 7) entao
+   escreva("Bom")
+senao se (media >= 5) entao
+   escreva("Regular")
+senao
+   escreva("Insuficiente")
+fimse</code></pre>
+      <p>O algoritmo testa as condições <strong>na ordem</strong>: assim que uma delas é verdadeira,
+      executa aquele bloco e ignora todo o resto, mesmo que outra condição mais abaixo também fosse
+      verdadeira.</p>
+      <div class="exemplo">
+        <strong>Exemplo:</strong> com <code>media = 6</code>: falha em <code>&gt;= 9</code>, falha em
+        <code>&gt;= 7</code>, passa em <code>&gt;= 5</code> → o algoritmo escreve "Regular" e para
+        por aí.
+      </div>
+
+      <h3>Condicionais aninhadas</h3>
+      <p>Um <code>se</code> pode conter outro <code>se</code> dentro dele, para checar condições em
+      etapas:</p>
+      <pre><code>se (idade >= 12) entao
+   se (altura >= 1.40) entao
+      escreva("Pode entrar no brinquedo")
+   senao
+      escreva("Altura insuficiente")
+   fimse
+senao
+   escreva("Idade insuficiente")
+fimse</code></pre>
+
+      <div class="atencao">
+        ⚠️ <strong>Erro comum:</strong> esquecer que, numa cadeia de <code>senao se</code>, apenas o
+        <strong>primeiro</strong> bloco cuja condição for verdadeira executa — as condições
+        seguintes nem chegam a ser testadas.
       </div>`,
     exercicios: [
       {
@@ -186,6 +344,21 @@ fimse</code></pre>
         explicacao: "Verdadeiro! O OU só resulta falso quando TODAS as condições são falsas."
       },
       {
+        tipo: "quiz",
+        enunciado: "Com media = 8, usando a cadeia se(>=9)/senao se(>=7)/senao se(>=5)/senao, o que o algoritmo escreve?",
+        opcoes: ["Excelente", "Bom", "Regular", "Insuficiente"],
+        resposta: 1,
+        dica: "8 é maior ou igual a 9? E a 7?",
+        explicacao: "8 não é >= 9, mas é >= 7, então cai no bloco \"Bom\" — a primeira condição que se torna verdadeira."
+      },
+      {
+        tipo: "vf",
+        enunciado: "Em uma cadeia de senao se, o algoritmo testa TODAS as condições, mesmo depois de encontrar uma verdadeira.",
+        resposta: false,
+        dica: "Pense no exemplo da nota: depois de cair em \"Bom\", ele ainda verifica \"Regular\"?",
+        explicacao: "Falso! Assim que uma condição é verdadeira, aquele bloco executa e as condições seguintes são ignoradas."
+      },
+      {
         tipo: "ordem",
         enunciado: "Ordene as linhas do algoritmo que verifica se um número é positivo:",
         itens: [
@@ -204,7 +377,7 @@ fimse</code></pre>
     id: "loop",
     titulo: "Laços de Repetição",
     icone: "🔁",
-    descricao: "Repetindo tarefas com enquanto e para.",
+    descricao: "Repetindo tarefas com enquanto e para, acumuladores e laços aninhados.",
     licao: `
       <h2>🔁 Laços de Repetição</h2>
       <p>Quando precisamos repetir uma tarefa várias vezes, usamos <strong>laços</strong> (loops),
@@ -225,6 +398,36 @@ fimenquanto
         <h3>Cuidado: loop infinito! ♾️</h3>
         <p>Se a condição do <code>enquanto</code> nunca ficar falsa (ex.: esquecer de incrementar o
         contador), o programa repete para sempre!</p>
+      </div>
+
+      <h3>O padrão acumulador 🧮</h3>
+      <p>Muitos problemas pedem para acumular um valor ao longo das repetições — por exemplo, somar
+      todos os números de uma lista. Para isso, criamos uma variável <strong>antes</strong> do laço,
+      começando em zero, e vamos somando a ela a cada volta:</p>
+      <pre><code>soma <- 0
+para i de 1 ate 5 faca
+   soma <- soma + i
+fimpara
+escreva(soma)
+// Saída: 15 (1+2+3+4+5)</code></pre>
+      <p>Note que <code>soma</code> começa em <code>0</code> <strong>antes</strong> do laço. Se ela
+      fosse inicializada dentro do laço, seria zerada a cada volta e o resultado sairia errado.</p>
+
+      <h3>Laços aninhados</h3>
+      <p>Um laço pode conter outro laço dentro dele — útil para gerar tabelas e combinações:</p>
+      <pre><code>para i de 1 ate 2 faca
+   para j de 1 ate 3 faca
+      escreva(i, "-", j)
+   fimpara
+fimpara
+// Saída: 1-1 1-2 1-3 2-1 2-2 2-3</code></pre>
+      <p>Para cada volta do laço externo (<code>i</code>), o laço interno (<code>j</code>) roda por
+      completo. Aqui: 2 voltas externas × 3 voltas internas = 6 saídas ao todo.</p>
+
+      <div class="atencao">
+        ⚠️ <strong>Erro comum:</strong> inicializar o acumulador (como <code>soma &lt;- 0</code>)
+        <strong>dentro</strong> do laço em vez de antes dele — isso zera o valor a cada repetição, e
+        o resultado final fica sempre errado.
       </div>`,
     exercicios: [
       {
@@ -249,6 +452,21 @@ fimenquanto
         resposta: false,
         dica: "Qual laço usa 'de 1 ate 10'? Isso indica quantidade conhecida ou desconhecida?",
         explicacao: "Falso! O PARA é usado quando o número de repetições é conhecido; para quantidade indefinida, usamos o ENQUANTO."
+      },
+      {
+        tipo: "quiz",
+        enunciado: "Qual o valor final de contador após o laço?\n\ncontador <- 0\npara i de 1 ate 3 faca\n   contador <- contador + 2\nfimpara",
+        opcoes: ["2", "3", "6", "9"],
+        resposta: 2,
+        dica: "O laço roda 3 vezes, somando 2 a cada volta. Quanto é 3 vezes 2?",
+        explicacao: "O laço executa 3 vezes (i=1,2,3), somando 2 em cada uma: 0+2+2+2 = 6."
+      },
+      {
+        tipo: "vf",
+        enunciado: "Em laços aninhados, para cada repetição do laço externo, o laço interno roda por completo.",
+        resposta: true,
+        dica: "Pense no exemplo da tabela: para cada valor de i, quantas vezes j roda?",
+        explicacao: "Verdadeiro! É exatamente esse comportamento que permite gerar tabelas e combinações com laços aninhados."
       },
       {
         tipo: "ordem",

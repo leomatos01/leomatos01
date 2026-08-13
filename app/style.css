@@ -131,13 +131,20 @@ main { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
   box-shadow: var(--sombra); padding: 28px; margin-bottom: 20px;
 }
 .licao h2 { margin-bottom: 12px; }
+.licao h3 { margin: 22px 0 8px; font-size: 1.05rem; color: var(--roxo-escuro); }
 .licao ul { margin: 12px 0 12px 24px; }
+.licao li { margin-bottom: 4px; }
 .licao pre {
   background: #2d3436; color: #dfe6e9; padding: 16px;
   border-radius: 10px; overflow-x: auto; margin: 14px 0; font-size: 0.9rem;
 }
 .licao .exemplo {
   background: #f0eeff; border-left: 4px solid var(--roxo);
+  border-radius: 8px; padding: 14px 16px; margin-top: 16px;
+}
+.licao .exemplo h3 { margin-top: 0; }
+.licao .atencao {
+  background: #fff8e5; border-left: 4px solid var(--amarelo);
   border-radius: 8px; padding: 14px 16px; margin-top: 16px;
 }
 .licao code { background: #eee; padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
